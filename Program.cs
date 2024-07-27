@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using eCommerce_MVC_.Data;
 namespace eCommerce_MVC_
 {
     public class Program
@@ -7,6 +9,12 @@ namespace eCommerce_MVC_
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<SecondHandContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Adds the developer exception page for database-related errors
+            //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
