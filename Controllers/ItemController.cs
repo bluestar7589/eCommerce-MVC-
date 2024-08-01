@@ -1,6 +1,7 @@
 ﻿using eCommerce_MVC_.Data;
 using eCommerce_MVC_.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace eCommerce_MVC_.Controllers
 {
@@ -13,6 +14,14 @@ namespace eCommerce_MVC_.Controllers
         public ItemController(SecondHandContext context)
         {
             _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            // Get all games from database
+            List <Item> item = await _context.Items.ToListAsync();
+            // Show them o nthe page
+            return View(item);
         }
 
         /// <summary>
