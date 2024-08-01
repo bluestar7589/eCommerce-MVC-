@@ -5,7 +5,7 @@ namespace eCommerce_MVC_.Models
     /// <summary>
     /// Represents single item for available for purchase
     /// </summary>
-    public class Items
+    public class Item
     {
         /// <summary>
         /// Unique identifier for the item

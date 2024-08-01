@@ -20,6 +20,5 @@ Using Entity Framework to create a simple eCommerce website with MVC.
 - Add the connection string to the appsettings.json
 - Add the DbContext to the services in the Program.cs
 
-
 Run the command `Add-Migration InitialDatabase` in the Package Manager Console with InitialDatabase is just a name/ nothing special
 Run the command `Update-Database` in the Package Manager Console
