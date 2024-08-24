@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eCommerce_MVC_.Controllers
 {
-    public class ItemController : Controller
+    public class ItemsController : Controller
     {
         /// <summary>
         /// The context for the database
         /// </summary>
         private readonly SecondHandContext _context;
-        public ItemController(SecondHandContext context)
+        public ItemsController(SecondHandContext context)
         {
             _context = context;
         }
