@@ -13,11 +13,13 @@ namespace eCommerce_MVC_.Models
         /// <summary>
         /// This is represent Email for member
         /// </summary>
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         /// <summary>
         /// This is represent Password for member
         /// </summary>
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         /// <summary>
@@ -29,6 +31,7 @@ namespace eCommerce_MVC_.Models
         /// <summary>
         /// This is represent PhoneNumber for member
         /// </summary>
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
     }
 
@@ -54,6 +57,7 @@ namespace eCommerce_MVC_.Models
         /// </summary>
         [Required]
         [StringLength(75,MinimumLength = 6)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         /// <summary>
@@ -62,6 +66,7 @@ namespace eCommerce_MVC_.Models
         [Required]
         [Compare(nameof(Password))]
         [Display(Name = "Confirm Password")]
+        [DataType(DataType.Password)]
         public string  ConfirmPassword { get; set; }
 
     }
