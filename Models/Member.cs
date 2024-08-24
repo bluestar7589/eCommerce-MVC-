@@ -70,4 +70,21 @@ namespace eCommerce_MVC_.Models
         public string  ConfirmPassword { get; set; }
 
     }
+
+    public class LoginViewModel
+    {
+        /// <summary>
+        /// This is represent Email for member
+        /// </summary>
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; } = null!; // = null! just let complier know to ignore the initial value with ! (null!)
+
+        /// <summary>
+        /// This is represent Password for member
+        /// </summary>
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; } = null!;
+    }
 }
