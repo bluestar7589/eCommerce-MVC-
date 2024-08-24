@@ -34,5 +34,25 @@ namespace eCommerce_MVC_.Controllers
             }
             return View(reg);
         }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginViewModel login) {
+            if (ModelState.IsValid) {
+                Member? user = _context.Members.FirstOrDefault(u => u.Email == login.Email && u.Password == login.Password);
+                if (user == null) {
+                    ModelState.AddModelError(string.Empty, "User or password is not correct!");
+                    //ViewData["LoginFailed"] = "User or password is not correct!!!";
+                    return View(login);
+                }
+                return RedirectToAction("Index","Home");
+            }
+            return View(login);
+        }
     }
 }
