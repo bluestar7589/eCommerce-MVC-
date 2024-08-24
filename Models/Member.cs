@@ -31,4 +31,38 @@ namespace eCommerce_MVC_.Models
         /// </summary>
         public string PhoneNumber { get; set; }
     }
+
+    public class RegisterViewModel {
+        /// <summary>
+        /// This is represent Email for member
+        /// </summary>
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [StringLength(100)]
+        public string Email { get; set; }
+
+        /// <summary>
+        /// This is represent ConfirmEmail for member
+        /// </summary>
+        [Required]
+        [Compare(nameof(Email))]
+        [Display(Name = "Confirm Email")]
+        public string ConfirmEmail { get; set; }
+
+        /// <summary>
+        /// This is represent Password for member
+        /// </summary>
+        [Required]
+        [StringLength(75,MinimumLength = 6)]
+        public string Password { get; set; }
+
+        /// <summary>
+        /// This is represent ConfirmPassword for member
+        /// </summary>
+        [Required]
+        [Compare(nameof(Password))]
+        [Display(Name = "Confirm Password")]
+        public string  ConfirmPassword { get; set; }
+
+    }
 }
