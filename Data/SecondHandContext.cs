@@ -17,5 +17,10 @@ namespace eCommerce_MVC_.Data
         /// Create the table items for the database
         /// </summary>
         public DbSet<Item> Items { get; set; }
+
+        /// <summary>
+        /// Create table Member for the database
+        /// </summary>
+        public DbSet<Member> Members { get; set; }
     }
 }
