@@ -14,25 +14,25 @@ namespace eCommerce_MVC_.Models
         /// This is represent Email for member
         /// </summary>
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
 
         /// <summary>
         /// This is represent Password for member
         /// </summary>
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string Password { get; set; } = null!;
 
         /// <summary>
         /// This is represent UserName for member
         /// </summary>
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
 
         /// <summary>
         /// This is represent PhoneNumber for member
         /// </summary>
         [DataType(DataType.PhoneNumber)]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
     }
 
     public class RegisterViewModel {
