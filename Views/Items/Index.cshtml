@@ -45,9 +45,9 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        @Html.ActionLink("Edit", "Edit", new { id = @item.ItemId }, new { @class = "btn btn-primary btn-sm" }) |
+                        @Html.ActionLink("Detail", "Detail", new { id = @item.ItemId }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = @item.ItemId }, new { @class = "btn btn-danger btn-sm" })
             </td>
         </tr>
 }
@@ -58,7 +58,15 @@ else {
     <h2>No items found.</h2>
 }
 
-@for (int i = 1; i <= Model.LastPage; i++)
-{
-    <a href="@i">@i </a>    
-}
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        @for (int i = 1; i <= Model.LastPage; i++)
+        {
+            <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
+                <a class="page-link" asp-action="Index" asp-route-id ="@i">@i</a>
+            </li>
+        }
+    </ul>
+</nav>
+

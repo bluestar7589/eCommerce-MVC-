@@ -70,5 +70,66 @@ namespace eCommerce_MVC_.Controllers
             }
             return View(item);
         }
+        [HttpGet]
+        /// <summary>
+        /// This method will call the edit view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> Edit(int id)
+        {
+            Item item = await _context.Items.FindAsync(id);
+            return View(item);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Item item) {
+            _context.Items.Update(item);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        /// <summary>
+        /// This method will call the detail view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> Detail(int id)
+        {
+            Item item = await _context.Items.FindAsync(id);
+            return View(item);
+        }
+
+        [HttpGet]
+        /// <summary>
+        /// This method will call the delete action
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Item item = await _context.Items.FindAsync(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return View(item);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            Item item = await _context.Items.FindAsync(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            _context.Items.Remove(item);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
     }
 }
