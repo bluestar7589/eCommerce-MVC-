@@ -29,6 +29,7 @@ namespace eCommerce_MVC_.Controllers
 
                 _context.Members.Add(member); // prepare the data to be inserted
                 _context.SaveChanges(); // insert the data to database
+                LogUserIn(member.Email); // keep the user logged in
                 // return to index in home controller
                 return RedirectToAction("Index","Home");
             }
@@ -43,18 +44,39 @@ namespace eCommerce_MVC_.Controllers
 
         [HttpPost]
         public IActionResult Login(LoginViewModel login) {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 Member? user = _context.Members.FirstOrDefault(u => u.Email == login.Email && u.Password == login.Password);
-                if (user == null) {
+                if (user == null)
+                {
                     ModelState.AddModelError(string.Empty, "User or password is not correct!");
                     //ViewData["LoginFailed"] = "User or password is not correct!!!";
                     return View(login);
                 }
-                HttpContext.Session.SetString("Email", login.Email);
+                LogUserIn(login.Email);
                 // return to index in home controller
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             return View(login);
+        }
+
+        /// <summary>
+        /// This method to keep the user logged in
+        /// </summary>
+        /// <param name="email"></param>
+        private void LogUserIn(String email)
+        {
+            HttpContext.Session.SetString("Email", email);
+        }
+
+        /// <summary>
+        /// This method is used to logout
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("Email");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
