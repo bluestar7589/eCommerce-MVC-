@@ -26,6 +26,7 @@ namespace eCommerce_MVC_
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             var app = builder.Build();
 
