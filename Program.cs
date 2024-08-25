@@ -17,6 +17,17 @@ namespace eCommerce_MVC_
 
             builder.Services.AddControllersWithViews();
 
+            // config for using session
+            builder.Services.AddDistributedMemoryCache();
+
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = System.TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -31,6 +42,8 @@ namespace eCommerce_MVC_
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession(); // for using session
 
             app.UseAuthorization();
 
