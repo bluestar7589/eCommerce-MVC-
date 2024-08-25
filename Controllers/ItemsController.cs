@@ -16,10 +16,20 @@ namespace eCommerce_MVC_.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
+            // Number of items per page
+            const int NumberOfItemsPerPage = 1;
+
+            // To get the current page
+            int currentPage = id.HasValue ? id.Value : 1;
+
+
             // Get all games from database
-            List <Item> item = await _context.Items.ToListAsync();
+            List <Item> item = await _context.Items
+                                                    .Skip(NumberOfItemsPerPage * (currentPage - 1))
+                                                    .Take(NumberOfItemsPerPage)
+                                                    .ToListAsync();
             // Show them o nthe page
             return View(item);
         }
