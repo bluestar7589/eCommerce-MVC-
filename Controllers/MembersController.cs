@@ -50,6 +50,8 @@ namespace eCommerce_MVC_.Controllers
                     //ViewData["LoginFailed"] = "User or password is not correct!!!";
                     return View(login);
                 }
+                HttpContext.Session.SetString("Email", login.Email);
+                // return to index in home controller
                 return RedirectToAction("Index","Home");
             }
             return View(login);

@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<!--For using http session-->
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor _httpContextAccessor;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,15 +32,26 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Items" asp-action="CreateItem">Create Item</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Members" asp-action="Register">Create New Account</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Members" asp-action="Login">Log In</a>
-                        </li>
+                        @if (_httpContextAccessor.HttpContext.Session.GetString("Email") == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Members" asp-action="Register">Create New Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Members" asp-action="Login">Log In</a>
+                            </li>
+                        } 
+                        else
+                        {
+                            <li class="nav-item">
+                                <p>@_httpContextAccessor.HttpContext.Session.GetString("Email")</p>
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>
