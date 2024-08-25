@@ -24,14 +24,23 @@ namespace eCommerce_MVC_.Controllers
             // To get the current page
             int currentPage = id.HasValue ? id.Value : 1;
 
+            // get the number of products in the database
+            int totalNumberOfProducts = await _context.Items.CountAsync();
 
+            // Round up the page
+            double maxNumPages = Math.Ceiling((double)totalNumberOfProducts / NumberOfItemsPerPage);
+            
+            int lastPage = Convert.ToInt32(maxNumPages);
+            
             // Get all games from database
             List <Item> item = await _context.Items
                                                     .Skip(NumberOfItemsPerPage * (currentPage - 1))
                                                     .Take(NumberOfItemsPerPage)
                                                     .ToListAsync();
+
+            ItemsCatalogViewModel itemsCatalogViewModel = new ItemsCatalogViewModel(item, lastPage, currentPage);
             // Show them o nthe page
-            return View(item);
+            return View(itemsCatalogViewModel);
         }
 
         /// <summary>
