@@ -82,6 +82,11 @@ namespace eCommerce_MVC_.Controllers
             return View(item);
         }
 
+        /// <summary>
+        /// This method will update information to database
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Edit(Item item) {
             _context.Items.Update(item);
@@ -118,6 +123,11 @@ namespace eCommerce_MVC_.Controllers
             return View(item);
         }
 
+        /// <summary>
+        /// This method will confirm before deleting the item
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
