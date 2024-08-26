@@ -17,6 +17,11 @@ namespace eCommerce_MVC_.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// This method will call the register view to create new memeber
+        /// </summary>
+        /// <param name="reg"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Register(RegisterViewModel reg) {
             if (ModelState.IsValid) {
@@ -35,13 +40,21 @@ namespace eCommerce_MVC_.Controllers
             }
             return View(reg);
         }
-
+        /// <summary>
+        /// This method will call the login page
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
+        /// <summary>
+        /// This method will check if the information that user input correct or not before login to system
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Login(LoginViewModel login) {
             if (ModelState.IsValid)
