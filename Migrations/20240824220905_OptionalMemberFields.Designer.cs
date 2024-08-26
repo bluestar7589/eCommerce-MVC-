@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCommerce_MVC_.Data;
 
@@ -10,9 +11,11 @@ using eCommerce_MVC_.Data;
 namespace eCommerce_MVC_.Migrations
 {
     [DbContext(typeof(SecondHandContext))]
-    partial class SecondHandContextModelSnapshot : ModelSnapshot
+    [Migration("20240824220905_OptionalMemberFields")]
+    partial class OptionalMemberFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
